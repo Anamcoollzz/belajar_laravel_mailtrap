@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
+Route::get('/home', function () {
+    return view('home');
+})->name('home')->middleware('auth');
+Route::post('/send-otp', [MailController::class, 'sendOtp'])->name('send-otp');
+
+Route::get('/otp', function () {
+    return view('otp');
+})->name('otp');
+Route::post('/check-otp', [MailController::class, 'checkOtp'])->name('check-otp');
+Route::get('/logout', [MailController::class, 'logout'])->name('logout');

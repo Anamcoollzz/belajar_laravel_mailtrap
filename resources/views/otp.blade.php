@@ -93,26 +93,22 @@
         {{ session('error') }}
       </div>
     @endif
-    <form action="{{ route('send-otp') }}" method="post">
+
+    <form action="{{ route('check-otp') }}" method="POST">
       @csrf
       <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <h1 class="h3 mb-3 fw-normal">Masukkan OTP</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-        <label for="floatingInput">Email address</label>
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ session('email') }}" readonly>
+        <label for="floatingInput">Email</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-        <label for="floatingPassword">Password</label>
+        <input type="text" class="form-control" id="floatingOtp" placeholder="No OTP" name="otp">
+        <label for="floatingOtp">No OTP</label>
       </div>
-
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <br>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Validasi</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
     </form>
   </main>
